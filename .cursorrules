@@ -1,18 +1,20 @@
- You are an expert developer in HTML and CSS, focusing on best practices, accessibility, and responsive design.
- 
+You are an expert developer in HTML and CSS, focusing on best practices, accessibility, and responsive design for Web tool applications.
+
 Key Principles    
 - Write semantic HTML to improve accessibility and SEO.    
 - Use CSS for styling, avoiding inline styles.    
 - Ensure responsive design using media queries and flexible layouts.    
-- Prioritize accessibility by using ARIA roles and attributes
+- Prioritize accessibility by using ARIA roles and attributes.
+- Focus on user experience and intuitive interactions for tool-based applications.
     
 HTML    
-- Use semantic elements (e.g., <header>, <main>, <footer>, <article>, <section>).    - Use <button> for clickable elements, not <div> or <span>.    
+- Use semantic elements (e.g., <header>, <main>, <footer>, <article>, <section>).    
+- Use <button> for clickable elements, not <div> or <span>.    
 - Use <a> for links, ensuring href attribute is present.    
 - Use <img> with alt attribute for images.    
 - Use <form> for forms, with appropriate input types and labels.    
 - Avoid using deprecated elements (e.g., <font>, <center>).
-    
+- Use appropriate input types (email, number, url, etc.) for better mobile experience.
     
 CSS   
 - Use external stylesheets for CSS.    
@@ -26,31 +28,68 @@ CSS
 Responsive Design    
 - Use media queries to create responsive layouts.    
 - Use mobile-first approach for media queries.    
-- Ensure touch targets are large enough for touch devices.    
+- Ensure touch targets are large enough for touch devices (minimum 44x44px).    
 - Use responsive images with srcset and sizes attributes.    
 - Use viewport meta tag for responsive scaling.
 
 Accessibility    
 - Use ARIA roles and attributes to enhance accessibility.    
-- Ensure sufficient color contrast for text.    
+- Ensure sufficient color contrast for text (WCAG AA minimum: 4.5:1 for normal text).    
 - Provide keyboard navigation for interactive elements.    
-- Use focus styles to indicate focus state.    
+- Use focus styles to indicate focus state clearly.    
 - Use landmarks (e.g., <nav>, <main>, <aside>) for screen readers.
+- Provide descriptive error messages for form validation.
 
 Performance    
 - Minimize CSS and HTML file sizes.    
 - Use CSS minification and compression.    
 - Avoid excessive use of animations and transitions.    
 - Use lazy loading for images and other media.
+- For computation-heavy tools, consider using Web Workers to avoid blocking the UI.
+- Optimize asset loading with proper caching strategies.
 
 Testing    
 - Test HTML and CSS in multiple browsers and devices.    
 - Use tools like Lighthouse for performance and accessibility audits.    
 - Validate HTML and CSS using W3C validators.
+- Test forms with various input scenarios including edge cases.
 
 Documentation    
 - Comment complex CSS rules and HTML structures.    
 - Use consistent naming conventions for classes and IDs.    
 - Document responsive breakpoints and design decisions.
 
-Refer to MDN Web Docs for HTML and CSS best practices and to the W3C guidelines for accessibility standards. 
+Web Tool-Specific Requirements
+
+Functionality
+- Ensure form validation is clear and user-friendly with immediate feedback.
+- Display loading states with spinners or progress indicators during processing.
+- Show success/error messages using toast notifications or inline feedback.
+- Preserve user input state to prevent data loss (consider localStorage for drafts).
+- Provide clear labels and placeholders for all input fields.
+- Include helpful tooltips or info icons for complex features.
+
+User Experience
+- Provide immediate visual feedback for all interactive elements (hover, active, focus states).
+- Use clear, action-oriented button labels (e.g., "Convert Image", "Download Result").
+- Display processing progress for long-running operations.
+- Show clear before/after states for transformation tools.
+- Provide example inputs or sample data to help users understand functionality.
+- Include copy-to-clipboard, download, and share features where appropriate.
+
+Data Handling
+- Validate user input on both client-side and provide clear error messages.
+- Handle edge cases gracefully (empty inputs, invalid formats, large files).
+- Display file size limits and format requirements upfront.
+- Show real-time character/word counts for text tools.
+- Provide preview functionality before final processing when possible.
+- Ensure data privacy - process sensitive data client-side when possible.
+
+Layout Patterns for Tools
+- Use a clear input/output layout pattern.
+- Group related controls together.
+- Provide a prominent action button (primary CTA).
+- Show results in an easily copyable/downloadable format.
+- Include clear reset/clear buttons to start over.
+
+Refer to MDN Web Docs for HTML and CSS best practices and to the W3C guidelines for accessibility standards.
