@@ -176,37 +176,37 @@ export default function Home() {
 </section>
 
 {/* Generator Section */}
-<section id="generator" className="relative py-24 px-6">
+<section id="generator" className="relative py-12 px-6">
   <div className="max-w-7xl mx-auto">
-    <div className="text-center mb-16">
-      <h2 className="text-5xl md:text-6xl font-bold mb-6">
+    <div className="text-center mb-8">
+      <h2 className="text-4xl md:text-5xl font-bold mb-3">
         Create Your AI Image Wallpaper
       </h2>
-      <p className="text-xl text-gray-400">Choose your theme and style, let AI do the magic</p>
+      <p className="text-lg text-gray-400">Choose your theme and style, let AI do the magic</p>
     </div>
     
-    <div className="grid lg:grid-cols-2 gap-8">
+    <div className="grid lg:grid-cols-2 gap-6">
       {/* Left: Selection Area */}
-      <div className="bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-8 hover:border-white/20 transition-all">
+      <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6 hover:border-white/20 transition-all">
         {/* Theme Selection */}
-        <div className="mb-10">
-          <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
             <span>Select Theme</span>
           </h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-3">
             {themes.map((theme) => (
               <button
                 key={theme.id}
                 onClick={() => setSelectedTheme(theme.id)}
-                className={`group py-5 px-5 rounded-2xl font-medium transition-all ${
+                className={`group py-3 px-3 rounded-xl font-medium transition-all ${
                   selectedTheme === theme.id
                     ? 'bg-white text-black shadow-2xl scale-105'
                     : 'bg-white/5 text-white hover:bg-white/10 border border-white/10'
                 }`}
               >
-                <div className="flex flex-col items-center gap-2">
-                  <span className="text-3xl">{theme.emoji}</span>
-                  <span className="text-sm">{theme.label}</span>
+                <div className="flex flex-col items-center gap-1">
+                  <span className="text-2xl">{theme.emoji}</span>
+                  <span className="text-xs">{theme.label}</span>
                 </div>
               </button>
             ))}
@@ -214,16 +214,16 @@ export default function Home() {
         </div>
 
         {/* Style Selection */}
-        <div className="mb-10">
-          <h3 className="text-xl font-semibold mb-6">
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-3">
             Select Style
           </h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-3">
             {styles.map((style) => (
               <button
                 key={style.id}
                 onClick={() => setSelectedStyle(style.id)}
-                className={`py-4 px-5 rounded-2xl font-medium transition-all ${
+                className={`py-3 px-3 rounded-xl font-medium text-sm transition-all ${
                   selectedStyle === style.id
                     ? 'bg-white text-black shadow-2xl scale-105'
                     : 'bg-white/5 text-white hover:bg-white/10 border border-white/10'
@@ -237,7 +237,7 @@ export default function Home() {
 
         {/* Error Message */}
         {error && (
-          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl">
+          <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded-xl">
             <p className="text-red-300 text-sm">{error}</p>
           </div>
         )}
@@ -246,7 +246,7 @@ export default function Home() {
         <button
           onClick={handleGenerate}
           disabled={isLoading || !selectedTheme || !selectedStyle}
-          className="w-full py-5 bg-white text-black text-lg font-bold rounded-2xl hover:bg-gray-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl hover:shadow-white/20 transform hover:scale-[1.02]"
+          className="w-full py-4 bg-white text-black text-base font-bold rounded-xl hover:bg-gray-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl hover:shadow-white/20 transform hover:scale-[1.02]"
         >
           {isLoading ? (
             <span className="flex items-center justify-center gap-3">
@@ -263,18 +263,18 @@ export default function Home() {
       </div>
 
       {/* Right: Preview Area */}
-      <div className="bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-8 hover:border-white/20 transition-all">
-        <h3 className="text-xl font-semibold mb-6">
+      <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6 hover:border-white/20 transition-all">
+        <h3 className="text-lg font-semibold mb-3">
           Preview
         </h3>
-        <div className="aspect-video bg-black/50 rounded-2xl overflow-hidden flex items-center justify-center border border-white/10 relative group">
+        <div className="aspect-video bg-black/50 rounded-xl overflow-hidden flex items-center justify-center border border-white/10 relative group">
           {isLoading ? (
             <div className="text-center">
-              <div className="relative w-20 h-20 mx-auto mb-6">
+              <div className="relative w-16 h-16 mx-auto mb-4">
                 <div className="absolute inset-0 border-4 border-white/20 rounded-full"></div>
                 <div className="absolute inset-0 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
               </div>
-              <p className="text-gray-300 text-lg">Creating your masterpiece...</p>
+              <p className="text-gray-300 text-base">Creating your masterpiece...</p>
             </div>
           ) : generatedImage ? (
             <div className="relative w-full h-full">
@@ -288,9 +288,9 @@ export default function Home() {
             </div>
           ) : (
             <div className="text-center text-gray-400">
-              <div className="w-24 h-24 mx-auto mb-6 bg-white/5 rounded-3xl flex items-center justify-center border border-white/10">
+              <div className="w-20 h-20 mx-auto mb-4 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10">
                 <svg
-                  className="w-12 h-12"
+                  className="w-10 h-10"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -303,7 +303,7 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <p className="text-lg font-medium mb-2">Your wallpaper will appear here</p>
+              <p className="text-base font-medium mb-1">Your wallpaper will appear here</p>
               <p className="text-sm text-gray-500">Select theme and style to begin</p>
             </div>
           )}
@@ -313,7 +313,7 @@ export default function Home() {
         {generatedImage && (
           <button
             onClick={handleDownload}
-            className="w-full mt-6 py-5 bg-white text-black text-lg font-bold rounded-2xl hover:bg-gray-100 transition-all shadow-2xl hover:shadow-white/20 transform hover:scale-[1.02]"
+            className="w-full mt-4 py-4 bg-white text-black text-base font-bold rounded-xl hover:bg-gray-100 transition-all shadow-2xl hover:shadow-white/20 transform hover:scale-[1.02]"
           >
             <span className="flex items-center justify-center gap-2">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -329,37 +329,37 @@ export default function Home() {
 </section>
 
       {/* How to Use Section */}
-      <section id="how-to-use" className="relative py-24 px-6 bg-white/[0.02]">
+      <section id="how-to-use" className="relative py-16 px-6 bg-white/[0.02]">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">How to Use</h2>
-            <p className="text-xl text-gray-400">Three simple steps to amazing wallpapers</p>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">How to Use</h2>
+            <p className="text-lg text-gray-400">Three simple steps to amazing wallpapers</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="group bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-10 hover:border-white/20 transition-all text-center">
-              <div className="w-20 h-20 bg-white text-black rounded-3xl flex items-center justify-center text-3xl font-bold mx-auto mb-6 group-hover:scale-110 transition-transform">
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="group bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-8 hover:border-white/20 transition-all text-center">
+              <div className="w-16 h-16 bg-white text-black rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform">
                 1
               </div>
-              <h3 className="text-2xl font-semibold mb-4">Choose Theme</h3>
-              <p className="text-gray-400 leading-relaxed">
+              <h3 className="text-xl font-semibold mb-3">Choose Theme</h3>
+              <p className="text-gray-400 leading-relaxed text-sm">
                 Select from character, animal, technology, landscape, architecture, or abstract themes.
               </p>
             </div>
-            <div className="group bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-10 hover:border-white/20 transition-all text-center">
-              <div className="w-20 h-20 bg-white text-black rounded-3xl flex items-center justify-center text-3xl font-bold mx-auto mb-6 group-hover:scale-110 transition-transform">
+            <div className="group bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-8 hover:border-white/20 transition-all text-center">
+              <div className="w-16 h-16 bg-white text-black rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform">
                 2
               </div>
-              <h3 className="text-2xl font-semibold mb-4">Pick Style</h3>
-              <p className="text-gray-400 leading-relaxed">
+              <h3 className="text-xl font-semibold mb-3">Pick Style</h3>
+              <p className="text-gray-400 leading-relaxed text-sm">
                 Choose your preferred style from realistic, natural, anime, cyberpunk, fantasy, or minimalist.
               </p>
             </div>
-            <div className="group bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-10 hover:border-white/20 transition-all text-center">
-              <div className="w-20 h-20 bg-white text-black rounded-3xl flex items-center justify-center text-3xl font-bold mx-auto mb-6 group-hover:scale-110 transition-transform">
+            <div className="group bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-8 hover:border-white/20 transition-all text-center">
+              <div className="w-16 h-16 bg-white text-black rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform">
                 3
               </div>
-              <h3 className="text-2xl font-semibold mb-4">Generate & Download</h3>
-              <p className="text-gray-400 leading-relaxed">
+              <h3 className="text-xl font-semibold mb-3">Generate & Download</h3>
+              <p className="text-gray-400 leading-relaxed text-sm">
                 Click generate and watch AI create your wallpaper, then download instantly in high resolution.
               </p>
             </div>
@@ -368,49 +368,49 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="relative py-24 px-6">
+      <section id="how-it-works" className="relative py-16 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">How It Works</h2>
-            <p className="text-xl text-gray-400">Powered by cutting-edge AI technology</p>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">How It Works</h2>
+            <p className="text-lg text-gray-400">Powered by cutting-edge AI technology</p>
           </div>
-          <div className="max-w-4xl mx-auto space-y-6">
-            <div className="group bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-10 hover:border-white/20 transition-all">
-              <div className="flex items-start gap-6">
-                <div className="flex-shrink-0 w-16 h-16 bg-white text-black rounded-2xl flex items-center justify-center font-bold text-2xl group-hover:scale-110 transition-transform">
+          <div className="max-w-4xl mx-auto space-y-4">
+            <div className="group bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6 hover:border-white/20 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-14 h-14 bg-white text-black rounded-xl flex items-center justify-center font-bold text-xl group-hover:scale-110 transition-transform">
                   AI
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">Stable Diffusion 3 Technology</h3>
-                  <p className="text-gray-400 leading-relaxed text-lg">
+                  <h3 className="text-xl font-semibold mb-2">Stable Diffusion 3 Technology</h3>
+                  <p className="text-gray-400 leading-relaxed text-sm">
                     Our generator uses Stable Diffusion 3, one of the most advanced AI image generation models, 
                     ensuring high-quality, detailed, and creative results.
                   </p>
                 </div>
               </div>
             </div>
-            <div className="group bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-10 hover:border-white/20 transition-all">
-              <div className="flex items-start gap-6">
-                <div className="flex-shrink-0 w-16 h-16 bg-white text-black rounded-2xl flex items-center justify-center font-bold text-2xl group-hover:scale-110 transition-transform">
+            <div className="group bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6 hover:border-white/20 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-14 h-14 bg-white text-black rounded-xl flex items-center justify-center font-bold text-xl group-hover:scale-110 transition-transform">
                   ⚡
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">Lightning-Fast Processing</h3>
-                  <p className="text-gray-400 leading-relaxed text-lg">
+                  <h3 className="text-xl font-semibold mb-2">Lightning-Fast Processing</h3>
+                  <p className="text-gray-400 leading-relaxed text-sm">
                     Optimized infrastructure delivers your custom wallpaper in seconds. 
                     No waiting, no complexity—just instant results.
                   </p>
                 </div>
               </div>
             </div>
-            <div className="group bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-10 hover:border-white/20 transition-all">
-              <div className="flex items-start gap-6">
-                <div className="flex-shrink-0 w-16 h-16 bg-white text-black rounded-2xl flex items-center justify-center font-bold text-2xl group-hover:scale-110 transition-transform">
+            <div className="group bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6 hover:border-white/20 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-14 h-14 bg-white text-black rounded-xl flex items-center justify-center font-bold text-xl group-hover:scale-110 transition-transform">
                   🎨
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">Unlimited Creativity</h3>
-                  <p className="text-gray-400 leading-relaxed text-lg">
+                  <h3 className="text-xl font-semibold mb-2">Unlimited Creativity</h3>
+                  <p className="text-gray-400 leading-relaxed text-sm">
                     Every generation is unique. Combine different themes and styles to create wallpapers 
                     that perfectly match your vision.
                   </p>
@@ -422,11 +422,11 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="relative py-24 px-6 bg-white/[0.02]">
+      <section id="faq" className="relative py-16 px-6 bg-white/[0.02]">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">FAQ</h2>
-            <p className="text-xl text-gray-400">Everything you need to know</p>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">FAQ</h2>
+            <p className="text-lg text-gray-400">Everything you need to know</p>
           </div>
           <div className="space-y-4">
             {faqs.map((faq, index) => (
@@ -459,7 +459,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="relative border-t border-white/10 py-12 px-6 mt-24">
+      <footer className="relative border-t border-white/10 py-12 px-6 mt-16">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
