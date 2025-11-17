@@ -108,13 +108,22 @@ export default function Home() {
   // Scroll to generator
   const scrollToGenerator = () => {
     const element = document.getElementById('generator');
-    element?.scrollIntoView({ behavior: 'smooth' });
+    if (element) {
+      const headerOffset = 80; // 导航栏高度(80px) + 小间距，让标题紧贴导航栏下方
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <header className="fixed top-0 w-full bg-black/50 backdrop-blur-lg z-50 border-b border-white/5">
+      <header className="fixed top-0 w-full bg-black/10 backdrop-blur-lg z-50 border-b border-white/5">
         <nav className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center">
             <h2 className="text-2xl font-bold">AI Wallpaper</h2>
@@ -137,17 +146,24 @@ export default function Home() {
 <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
   {/* Background with overlay */}
   <div className="absolute inset-0 z-0">
-    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black z-10"></div>
-    <div 
-      className="absolute inset-0 opacity-40"
-      style={{
-        backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="white" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-      }}
-    ></div>
-
-    {/* Gradient orbs */}
-    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl animate-pulse"></div>
-    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+    {/* 背景大图 */}
+    <div className="absolute inset-0">
+      <Image
+        src="/hero-background.jpg"
+        alt="Background"
+        fill
+        className="object-cover"
+        priority
+        quality={90}
+      />
+    </div>
+    
+    {/* 渐变遮罩层 - 确保文字清晰可读 */}
+    <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black z-10"></div>
+    
+    {/* 装饰性渐变球 */}
+    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse z-10"></div>
+    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl animate-pulse z-10" style={{ animationDelay: '1s' }}></div>
   </div>
 
   <div className="relative z-20 max-w-6xl mx-auto px-6 text-center">
@@ -172,14 +188,36 @@ export default function Home() {
         Create For Free
       </button>
     </div>
+
+    {/* Trust Indicators - Statistics */}
+    <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      <div className="text-center">
+        <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
+          10K+
+        </div>
+        <div className="text-sm md:text-base text-gray-400 font-medium">Wallpapers Created</div>
+      </div>
+      <div className="text-center">
+        <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent mb-2">
+          36
+        </div>
+        <div className="text-sm md:text-base text-gray-400 font-medium">Style Combinations</div>
+      </div>
+      <div className="text-center">
+        <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
+          30s
+        </div>
+        <div className="text-sm md:text-base text-gray-400 font-medium">Average Generation Time</div>
+      </div>
+    </div>
   </div>
 </section>
 
 {/* Generator Section */}
-<section id="generator" className="relative py-12 px-6">
+<section id="generator" className="relative pt-12 pb-16 px-6">
   <div className="max-w-7xl mx-auto">
-    <div className="text-center mb-8">
-      <h2 className="text-4xl md:text-5xl font-bold mb-3">
+    <div className="text-center mb-6">
+      <h2 className="text-4xl md:text-5xl font-bold mb-2">
         Create Your AI Image Wallpaper
       </h2>
       <p className="text-lg text-gray-400">Choose your theme and style, let AI do the magic</p>
@@ -187,10 +225,10 @@ export default function Home() {
     
     <div className="grid lg:grid-cols-2 gap-6">
       {/* Left: Selection Area */}
-      <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6 hover:border-white/20 transition-all">
+      <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6 hover:border-white/20 transition-all flex flex-col">
         {/* Theme Selection */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+        <div className="mb-5">
+          <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
             <span>Select Theme</span>
           </h3>
           <div className="grid grid-cols-3 gap-3">
@@ -214,8 +252,8 @@ export default function Home() {
         </div>
 
         {/* Style Selection */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-3">
+        <div className="mb-5">
+          <h3 className="text-lg font-semibold mb-2">
             Select Style
           </h3>
           <div className="grid grid-cols-3 gap-3">
@@ -264,10 +302,10 @@ export default function Home() {
 
       {/* Right: Preview Area */}
       <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6 hover:border-white/20 transition-all">
-        <h3 className="text-lg font-semibold mb-3">
+        <h3 className="text-lg font-semibold mb-2">
           Preview
         </h3>
-        <div className="aspect-video bg-black/50 rounded-xl overflow-hidden flex items-center justify-center border border-white/10 relative group">
+        <div className="flex-1 min-h-[400px] bg-black/50 rounded-xl overflow-hidden flex items-center justify-center border border-white/10 relative group">
           {isLoading ? (
             <div className="text-center">
               <div className="relative w-16 h-16 mx-auto mb-4">
